@@ -1,8 +1,25 @@
-<h1>Hello World!</h1>
+@extends('_layouts.master')
+@section('content')
 
 <p>
-    <a href="radios/create">Radios create form</a>
+Input::old('station') = {{ Input::old('station') }}
 </p>
+{{ Form::open(['route' => 'radios.store', 'method' => 'POST', 'name' => 'radiosCreateForm']) }}
+<p>
+{{ Form::label('alpha', 'alpha: ') }}
+{{ Form::radio('station', 'alpha', '', ['id' => 'alpha']) }}
+</p>
+<p>
+{{ Form::label('beta', 'beta: ') }}
+{{ Form::radio('station', 'beta', '', ['id' => 'beta']) }}
+</p>
+<p>
+{{ Form::label('charlie', 'charlie: ') }}
+{{ Form::radio('station', 'charlie', '', ['id' => 'charlie']) }}
+</p>
+{{ Form::submit('Submit', ['name' => 'submit']) }}
+
+{{ Form::close() }}
 
 <h3>Steps to replicate the issue</h3>
 <ol>
@@ -43,3 +60,5 @@ I tried to var_dump($input) inside withInput method under Illuminate\Http\Redire
 <p>
 I suspect that the current implementation of $this->session->flashInput($input); is detecting that there already exists a old station key and is not updating its value properly.
 </p>
+
+@stop
