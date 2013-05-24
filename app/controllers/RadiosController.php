@@ -19,7 +19,9 @@ class RadiosController extends \BaseController {
 	 */
 	public function store()
 	{
-		return Redirect::route('radios.create')->withInput();
+		return Redirect::route('radios.create')
+			->withInput()
+			->with('message', "Input::get('station') from store method = ".Input::get('station'));
 	}
 
 }

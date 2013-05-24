@@ -1,6 +1,10 @@
 @extends('_layouts.master')
 @section('content')
 
+@if(Session::has('message'))
+    <p>{{ Session::get('message') }}</p>
+@endif
+
 <p>
 Input::old('station') = {{ Input::old('station') }}
 </p>
